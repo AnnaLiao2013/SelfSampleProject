@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+</head>
+
+<body>
+    <h2>Welcome to our Music Library</h2>
+    <div ng-app="infoApp" ng-controller="myController">
+        <div style="width:300px">
+            <input type="text" ng-model="artistName" ng-change="nameChange()" class="form-control" placeholder="Artist's Name" />
+            <br />
+        </div>
+        <div style="width:300px">
+            <ul class="list-group" style="width:100%;">
+                <li class="list-group-item" style="width:100%;" ng-repeat="person in artistSuggestion"><a href="javascript:void(0)" ng-click="getAlbums(person.name)">{{person.name}}</a></li>
+            </ul>
+        </div>
+        <div style="width:300px;height:100%;position:absolute;left:300px;top:53px;">
+            <ul class="list-group" style="width:100%;">
+                <li class="list-group-item" style="width:100%;" ng-repeat="album in albumsList">
+                    <a href="javascript:void(0)" ng-click="getAlbumInfo(album.name)">{{album.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <div style="width:600px;height:100%;position:absolute;left:610px;top:27px;" ng-show="show">
+            <div style="width:300px;height:100%;position:absolute;left:0px;top:30px;">
+                <img src="{{albumCover}}" />
+            </div>
+            <div style="width:300px;height:100%;position:absolute;left:310px;top:30px;">
+                <table class="table" style="width:100%;">
+                    <tr>
+                        <td>Title:</td>
+                        <td> {{title}}</td>
+                    </tr>
+                    <tr>
+                        <td>Artist:</td>
+                        <td> {{artist}}</td>
+                    </tr>
+                    <tr>
+                        <td>Release Date: </td>
+                        <td>{{date}}</td>
+                    </tr>
+                    <tr>
+                        <td>Tracklist</td>
+                        <td> Duration</td>
+                    </tr>
+                    <tr ng-repeat="track in tracks">
+                        <td ng-model="track.name">{{track.name}}</td>
+                        <td data-ng-model="track.duration">{{track.duration}}s</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="app.js">
+    </script>
+</body>
+
+</html>
