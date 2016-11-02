@@ -62,7 +62,8 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="form_message">Message *</label>
-                            <textarea id="form_message" name="message" class="form-control" placeholder="Message for me" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+                            <textarea id="form_message" name="message" class="form-control" placeholder="Message for me" rows="4" required="required" data-error="Please,leave us a message." maxlength="255"></textarea>
+                            <span id="message"></span>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
@@ -82,6 +83,18 @@
     <script>
         $(document).ready(function () {
             $('#form_phone').mask("(999)999-9999");
+            
+            var maxLength = 255;
+            $('textarea').keyup(function () {
+                var length = $(this).val().length;
+                var length = maxLength - length;
+                if(length > 0) {
+                    $('#message').text(length + " characters remaining");
+                } else {
+                    $('#message').hide();
+                }
+                
+            });
         });
     </script>
 
